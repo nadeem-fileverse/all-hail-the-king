@@ -10,15 +10,20 @@ export default {
   },
 
   async scheduled(event: ScheduledEvent, env: Env, ctx: ExecutionContext): Promise<void> {
-    await ensureInitialized(env);
+    try {
+      await ensureInitialized(env);
 
-    switch (event.cron) {
-      case "*/1 * * * *":
-        await submitPendingEvents();
-        break;
-      case "*/2 * * * *":
-        await resolveSubmittedEvents();
-        break;
+      switch (event.cron) {
+        case "*/1 * * * *":
+          await submitPendingEvents();
+          break;
+        case "*/2 * * * *":
+          await resolveSubmittedEvents();
+          break;
+      }
+    } catch (error) {
+      console.error(`[scheduled] cron ${event.cron} failed:`, error);
+      throw error;
     }
   },
 };

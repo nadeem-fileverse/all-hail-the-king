@@ -10,16 +10,15 @@ export async function submitPendingEvents(): Promise<void> {
     const event = await EventsModel.findNextEligible([]);
     if (!event) break;
 
-    await EventsModel.markProcessing(event._id);
-
     try {
+      await EventsModel.markProcessing(event._id);
       console.log(`[sync:submit] event ${event._id}, type: ${event.type}, fileId: ${event.fileId}`);
       await submitEvent(event);
       await EventsModel.markSubmitted(event._id);
       console.log(`[sync:submit] event ${event._id} submitted successfully`);
     } catch (error) {
+      console.error(`[sync:submit] event ${event._id} failed:`, error);
       const errorMsg = error instanceof Error ? error.message : String(error);
-      console.error(`[sync:submit] event ${event._id} threw:`, errorMsg);
       await EventsModel.markFailed(event._id, errorMsg);
     }
   }
@@ -47,8 +46,8 @@ export async function resolveSubmittedEvents(): Promise<void> {
         console.log(`[sync:resolve] event ${event._id} resolved`);
       }
     } catch (error) {
+      console.error(`[sync:resolve] event ${event._id} failed:`, error);
       const errorMsg = error instanceof Error ? error.message : String(error);
-      console.error(`[sync:resolve] event ${event._id} threw:`, errorMsg);
       await EventsModel.markFailed(event._id, errorMsg);
     }
   }
