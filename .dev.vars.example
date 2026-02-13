@@ -1,0 +1,8 @@
+# Required: Your Fileverse API key
+API_KEY=your-fileverse-api-key-here
+
+# Optional: Custom blockchain RPC URL
+# RPC_URL=https://rpc.gnosis.gateway.fm
+
+# Optional: PostgreSQL via Hyperdrive (instead of D1)
+# DATABASE_URL=postgresql://user:pass@host/db

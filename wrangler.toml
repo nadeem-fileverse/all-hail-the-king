@@ -1,0 +1,19 @@
+name = "all-hail-the-king"
+main = "src/index.ts"
+compatibility_date = "2025-01-01"
+compatibility_flags = ["nodejs_compat"]
+
+[[d1_databases]]
+binding = "DB"
+database_name = "fileverse-db"
+database_id = "fbc7f10c-0702-43b7-bf94-b75a82aa3532"
+migrations_dir = "migrations"
+
+[triggers]
+crons = ["*/1 * * * *"]
+
+[vars]
+NODE_ENV = "production"
+
+[observability]
+enabled = true
