@@ -12,11 +12,13 @@ export default {
   async scheduled(event: ScheduledEvent, env: Env, ctx: ExecutionContext): Promise<void> {
     await ensureInitialized(env);
 
-    // Submit is quick — run inline so it completes before response
-    await submitPendingEvents();
-
-    // Resolve loop runs for ~50s (5 rounds × 10s sleep) — run via waitUntil
-    // so the scheduled handler can return while resolve keeps polling
-    ctx.waitUntil(resolveSubmittedEvents());
+    switch (event.cron) {
+      case "*/1 * * * *":
+        await submitPendingEvents();
+        break;
+      case "*/2 * * * *":
+        await resolveSubmittedEvents();
+        break;
+    }
   },
 };
