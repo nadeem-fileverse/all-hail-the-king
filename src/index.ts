@@ -14,10 +14,10 @@ export default {
       await ensureInitialized(env);
 
       switch (event.cron) {
-        case "*/1 * * * *":
+        case "*/2 * * * *":
           await submitPendingEvents();
           break;
-        case "*/15 * * * *": // every 15 seconds
+        case "*/1 * * * *":
           await resolveSubmittedEvents();
           break;
       }
