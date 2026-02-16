@@ -1,5 +1,5 @@
 import { Hono } from "hono";
-import { listFolders, getFolder, createFolder } from "@fileverse/api/cloudflare";
+import { listFolders, getFolder, createFolder } from "@fileverse/api/base";
 import type { Env } from "../types";
 
 const folders = new Hono<{ Bindings: Env }>();

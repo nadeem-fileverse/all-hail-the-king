@@ -1,5 +1,5 @@
 import { Hono } from "hono";
-import { ApiKeysModel, searchNodes } from "@fileverse/api/cloudflare";
+import { ApiKeysModel, searchNodes } from "@fileverse/api/base";
 import type { Env } from "../types";
 
 const search = new Hono<{ Bindings: Env }>();

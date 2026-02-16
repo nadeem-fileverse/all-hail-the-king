@@ -1,6 +1,6 @@
 import { Hono } from "hono";
-import { createMcpServer } from "@fileverse/api/cloudflare";
-import type { FileverseConfig } from "@fileverse/api/cloudflare";
+import { createMcpServer } from "@fileverse/api/base";
+import type { FileverseConfig } from "@fileverse/api/base";
 import type { Env } from "../types";
 
 const mcp = new Hono<{ Bindings: Env }>();

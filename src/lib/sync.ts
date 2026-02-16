@@ -1,4 +1,4 @@
-import { EventsModel, FilesModel, submitEvent, resolveEvent } from "@fileverse/api/cloudflare";
+import { EventsModel, submitEvent, resolveEvent } from "@fileverse/api/base";
 
 const MAX_SUBMIT_PER_TICK = 1;
 const MAX_RESOLVE_PER_TICK = 3;
@@ -11,15 +11,8 @@ export async function submitPendingEvents(): Promise<void> {
     if (!event) break;
 
     try {
-      await EventsModel.markProcessing(event._id);
       console.log(`[sync:submit] event ${event._id}, type: ${event.type}, fileId: ${event.fileId}`);
-      const result = await submitEvent(event);
-      if (result && "userOpHash" in result) {
-        await EventsModel.setEventPendingOp(event._id, result.userOpHash, result.pendingPayload);
-      } else if (result && "noOp" in result) {
-        await FilesModel.update(result.fileId, { syncStatus: "synced", isDeleted: 1 }, result.portalAddress);
-      }
-      await EventsModel.markSubmitted(event._id);
+      await submitEvent(event);
       console.log(`[sync:submit] event ${event._id} submitted successfully`);
     } catch (error) {
       console.error(`[sync:submit] event ${event._id} failed:`, error);

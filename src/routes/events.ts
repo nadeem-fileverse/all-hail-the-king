@@ -1,5 +1,5 @@
 import { Hono } from "hono";
-import { ApiKeysModel, EventsModel } from "@fileverse/api/cloudflare";
+import { ApiKeysModel, EventsModel } from "@fileverse/api/base";
 import type { Env } from "../types";
 
 const events = new Hono<{ Bindings: Env }>();

@@ -2,7 +2,7 @@ import {
   setAdapter,
   runMigrations,
   initializeFromApiKey,
-} from "@fileverse/api/cloudflare";
+} from "@fileverse/api/base";
 import { D1Adapter } from "../adapter/d1-adapter";
 import type { Env } from "../types";
 

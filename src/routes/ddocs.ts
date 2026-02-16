@@ -6,7 +6,7 @@ import {
   createFile,
   updateFile,
   deleteFile,
-} from "@fileverse/api/cloudflare";
+} from "@fileverse/api/base";
 import type { Env } from "../types";
 
 const ddocs = new Hono<{ Bindings: Env }>();

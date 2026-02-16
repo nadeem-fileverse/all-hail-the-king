@@ -1,4 +1,4 @@
-import type { DatabaseAdapter, ExecuteResult } from "@fileverse/api/cloudflare";
+import type { DatabaseAdapter, ExecuteResult } from "@fileverse/api/base";
 
 export class D1Adapter implements DatabaseAdapter {
   private db: D1Database;

@@ -76,21 +76,21 @@ curl "http://localhost:8787/__scheduled?cron=*+*+*+*+*"
 
 All `/api/*` endpoints require `?apiKey=YOUR_KEY` query parameter.
 
-| Method | Path | Description |
-|--------|------|-------------|
-| `GET` | `/ping` | Health check |
-| `POST` | `/api/ddocs` | Create a document |
-| `GET` | `/api/ddocs` | List documents (`?limit=&skip=`) |
-| `GET` | `/api/ddocs/:ddocId` | Get a document |
-| `PUT` | `/api/ddocs/:ddocId` | Update a document |
-| `DELETE` | `/api/ddocs/:ddocId` | Delete a document |
-| `GET` | `/api/folders` | List folders |
-| `POST` | `/api/folders` | Create a folder |
-| `GET` | `/api/folders/:folderRef/:folderId` | Get a folder |
-| `GET` | `/api/search?q=query` | Search documents |
-| `GET` | `/api/events/failed` | List failed sync events |
-| `POST` | `/api/events/retry-failed` | Retry all failed events |
-| `POST` | `/api/events/:id/retry` | Retry a single event |
+| Method   | Path                                | Description                      |
+| -------- | ----------------------------------- | -------------------------------- |
+| `GET`    | `/ping`                             | Health check                     |
+| `POST`   | `/api/ddocs`                        | Create a document                |
+| `GET`    | `/api/ddocs`                        | List documents (`?limit=&skip=`) |
+| `GET`    | `/api/ddocs/:ddocId`                | Get a document                   |
+| `PUT`    | `/api/ddocs/:ddocId`                | Update a document                |
+| `DELETE` | `/api/ddocs/:ddocId`                | Delete a document                |
+| `GET`    | `/api/folders`                      | List folders                     |
+| `POST`   | `/api/folders`                      | Create a folder                  |
+| `GET`    | `/api/folders/:folderRef/:folderId` | Get a folder                     |
+| `GET`    | `/api/search?q=query`               | Search documents                 |
+| `GET`    | `/api/events/failed`                | List failed sync events          |
+| `POST`   | `/api/events/retry-failed`          | Retry all failed events          |
+| `POST`   | `/api/events/:id/retry`             | Retry a single event             |
 
 ## Configuration
 
@@ -98,10 +98,10 @@ All `/api/*` endpoints require `?apiKey=YOUR_KEY` query parameter.
 
 Set via `wrangler secret put` for production, or in `.dev.vars` for local development.
 
-| Variable | Required | Description |
-|----------|----------|-------------|
-| `API_KEY` | Yes | Your Fileverse API key |
-| `RPC_URL` | No | Custom Gnosis RPC URL |
+| Variable  | Required | Description            |
+| --------- | -------- | ---------------------- |
+| `API_KEY` | Yes      | Your Fileverse API key |
+| `RPC_URL` | No       | Custom Gnosis RPC URL  |
 
 ### Cron Schedule
 
@@ -129,7 +129,7 @@ Cron (every minute) → Process pending events
                        └── Mark processed/failed
 ```
 
-The worker imports `@fileverse/api/cloudflare` which provides domain logic, models, and the event processor without pulling in Node-only dependencies (Express, better-sqlite3, etc.).
+The worker imports `@fileverse/api/base` which provides domain logic, models, and the event processor without pulling in Node-only dependencies (Express, better-sqlite3, etc.).
 
 ## MCP Integration
 
