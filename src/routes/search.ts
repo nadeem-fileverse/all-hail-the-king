@@ -20,7 +20,7 @@ search.get("/", async (c) => {
   const limit = c.req.query("limit") ? parseInt(c.req.query("limit")!, 10) : undefined;
   const skip = c.req.query("skip") ? parseInt(c.req.query("skip")!, 10) : undefined;
 
-  const result = await searchNodes({ q, limit, skip, portalAddress });
+  const result = await searchNodes({ query: q, limit, skip, portalAddress });
   return c.json(result);
 });
 

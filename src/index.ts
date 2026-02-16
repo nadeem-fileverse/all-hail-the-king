@@ -17,7 +17,7 @@ export default {
         case "*/1 * * * *":
           await submitPendingEvents();
           break;
-        case "*/2 * * * *":
+        case "*/15 * * * *": // every 15 seconds
           await resolveSubmittedEvents();
           break;
       }
